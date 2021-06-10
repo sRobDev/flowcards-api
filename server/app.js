@@ -3,14 +3,17 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const koaBody = require('koa-body');
 const router = require('@koa/router')();
+const cors = require('@koa/cors');
 const app = module.exports = new Koa();
 const prisma = new PrismaClient();
 
 app.use(koaBody());
+app.use(cors());
 
 router.get('/', hello)
   .post('/user/new', createUser)
   .get('/user/:id', getUser)
+  .get('/cards/all/:id', getAllCards)
   .post('/card/new/:id', createCard)
   .post('/card/:id/update', updateCard)
   .get('/card/:id', getCard)
@@ -36,12 +39,17 @@ async function createUser(ctx) {
   });
 }
 
+async function getAllCards(ctx) {
+  ctx.body = await prisma.card.findMany({where: { authorId: +ctx.params.id }});
+}
+
 async function getCard(ctx) {
   ctx.body = await prisma.card.findUnique({ where: { id: parseInt(ctx.params.id) } })
 }
 
 async function createCard(ctx) {
   const authorId = +ctx.params.id;
+  console.log('Turbo:', ctx.request.body);
 
   ctx.body = await prisma.card.create({ data: {...ctx.request.body, authorId } });
 }
@@ -75,4 +83,4 @@ async function createTopic(ctx) {
 
 const simpleCreate = async (body, table) => await prisma[table].create({ data: {...body } });
 
-if (!module.parent) app.listen(3000);
+if (!module.parent) app.listen(3001);
