@@ -1,0 +1,12 @@
+.searchbox {
+  border-radius: 10px;
+  background-color: var(--secondary-brand);
+  max-width: 20rem;
+  height: 2rem;
+  padding: 0 1rem;
+  flex: 1 1 100%;
+  input {
+    border: none;
+    background: inherit;
+  }
+}

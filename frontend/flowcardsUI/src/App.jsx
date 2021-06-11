@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
-import Card from './components/Card';
-
+import Navbar from './components/Navbar/Navbar';
+import Card from './components/Card/Card';
+import AddCardButton from './components/AddCardButton/AddCardButton';
 function App() {
   const [data, setData] = useState(null);
   const [cardTitle, setCardTitle] = useState('');
@@ -36,10 +37,11 @@ function App() {
 
   return (
     <div className="App">
-      {/* Navbar */}
+      <Navbar />
       {/* Body */}
-      { data && data.map((card, idx) => <Card key={idx} {...card} />)}
-      {!adding && <button onClick={() => setAdding(true)}>Add Card</button>}
+      <AddCardButton />
+
+
       {adding && (
         <div>
           <input placeholder="Enter Card Title" value={cardTitle} onChange={e => setCardTitle(e.target.value)} />

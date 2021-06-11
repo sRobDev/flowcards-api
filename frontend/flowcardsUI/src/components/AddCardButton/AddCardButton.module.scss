@@ -1,0 +1,19 @@
+.container {
+  border-radius: 999px;
+  background-color: var(--secondary-brand);
+  display: flex;
+  height: 3rem;
+  width: 3rem;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  
+  &:hover {
+    transition: all 0.2s linear;
+    background-color: var(--secondary-brand);
+  }
+
+  &:active {
+    background-color: var(--secondary-brand);
+  }
+}
