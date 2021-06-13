@@ -39,7 +39,9 @@ function App() {
     <div className="App">
       <Navbar />
       {/* Body */}
-      <AddCardButton />
+      <div className="card-row">
+        {data && data.map((card, idx) => <Card {...card} key={idx} />)}
+      </div>
 
 
       {adding && (

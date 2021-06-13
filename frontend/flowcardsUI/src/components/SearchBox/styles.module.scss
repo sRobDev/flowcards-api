@@ -3,10 +3,29 @@
   background-color: var(--secondary-brand);
   max-width: 20rem;
   height: 2rem;
-  padding: 0 1rem;
+  padding: 0 1rem 0 0.5rem;
+  display: flex;
   flex: 1 1 100%;
+  justify-content: flex-start;
+  align-items: center;
+
+  svg {
+    color: var(--primary-background-color);
+    padding: 0 0.5rem 0 0;
+  }
+
   input {
     border: none;
     background: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--primary-background-color);
+    outline: none;
+    
+    &::placeholder {
+      font-weight: normal;
+      opacity: .75;
+      color: var(--primary-background-color);
+    }
   }
 }

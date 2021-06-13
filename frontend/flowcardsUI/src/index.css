@@ -21,7 +21,29 @@ code {
 }
 
 :root {
-  --primary-brand: #222026;
+  /* --primary-brand: #222026;
   --secondary-brand: #53778F;
   --primary-background-color: #171A1B; 
+  --primary-font-color: #727E83;
+
+  --light-background: #78B0B3;
+
+  --primary-button-color: #222026; */
+  
+  --primary-brand: #222026;
+  --secondary-brand: #005F73;
+
+  --tertiary-brand: #0A9396;
+
+  --sub-brand: #0a9396;
+  
+
+  --primary-background-color: #171A1B; 
+  --primary-font-color: #727E83;
+
+  --light-background: #E9D8A6;
+
+  --primary-button-color: #222026;
+
+  --danger: #AE2012;
 }
