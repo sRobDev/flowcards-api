@@ -3,11 +3,17 @@ import './App.css'
 import Navbar from './components/Navbar/Navbar';
 import Card from './components/Card/Card';
 import AddCardButton from './components/AddCardButton/AddCardButton';
+import { removeCard } from './services/flow.service';
 function App() {
   const [data, setData] = useState(null);
   const [cardTitle, setCardTitle] = useState('');
   const [cardDescription, setCardDescription] = useState('');
   const [adding, setAdding] = useState(false);
+
+  const deleteCard = (id) => {
+    removeCard(id);
+    fetchData();
+  };
 
   const fetchData = async () => {
     const res = await (await fetch('http://localhost:3001/cards/all/1')).json();
@@ -19,7 +25,6 @@ function App() {
       method: 'POST', 
       headers: {
         'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify(data)
     })).json();
@@ -31,6 +36,7 @@ function App() {
     setAdding(false);
     submitNewCard({title: cardTitle, content: cardDescription});
   }
+  
   useEffect(() => {
     fetchData();
   }, []);
@@ -40,7 +46,7 @@ function App() {
       <Navbar />
       {/* Body */}
       <div className="card-row">
-        {data && data.map((card, idx) => <Card {...card} key={idx} />)}
+        {data && data.map((card, idx) => <Card {...card} onRemove={() => deleteCard(card.id)} key={idx} />)}
       </div>
 
 

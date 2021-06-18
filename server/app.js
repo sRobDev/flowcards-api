@@ -15,9 +15,11 @@ router.get('/', hello)
   .get('/user/:id', getUser)
   .get('/cards/all/:id', getAllCards)
   .post('/card/new/:id', createCard)
+  .post('/card/delete/:id', deleteCard)
   .post('/card/:id/update', updateCard)
   .get('/card/:id', getCard)
   .post('/topic/new/:id', createTopic)
+  .post('/topic/delete/:id', deleteTopic)
   .get('/topic/:id', getTopic);
 
 app.use(router.routes());
@@ -49,9 +51,12 @@ async function getCard(ctx) {
 
 async function createCard(ctx) {
   const authorId = +ctx.params.id;
-  console.log('Turbo:', ctx.request.body);
 
   ctx.body = await prisma.card.create({ data: {...ctx.request.body, authorId } });
+}
+
+async function deleteCard(ctx) {
+  ctx.body = await prisma.card.delete({ where: { id: +ctx.params.id } });
 }
 
 async function updateCard(ctx) {
@@ -79,6 +84,10 @@ async function createTopic(ctx) {
   const authorId = +ctx.params.id;
 
   ctx.body = await prisma.topic.create({ data: {...ctx.request.body, authorId } });
+}
+
+async function deleteTopic(ctx) {
+  ctx.body = await prisma.topic.delete({ where: { id: +ctx.params.id } });
 }
 
 const simpleCreate = async (body, table) => await prisma[table].create({ data: {...body } });

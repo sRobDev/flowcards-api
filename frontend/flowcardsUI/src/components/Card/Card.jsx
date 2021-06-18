@@ -1,4 +1,5 @@
 import React from 'react';
+import { removeCard } from '../../services/flow.service';
 import { 
   DeleteIcon,
   EditIcon
@@ -8,7 +9,8 @@ import {
   divider,
   controls
 } from './card.module.scss';
-export default function Card({title, content, topic}) {
+export default function Card({title, content, topic, onRemove}) {
+
   return (
     <div className={container}>
       <div>
@@ -18,7 +20,7 @@ export default function Card({title, content, topic}) {
       <p>{content}</p>
 
       <div className={controls}>
-        <button><DeleteIcon/></button>
+        <button onClick={onRemove}><DeleteIcon/></button>
         <button><EditIcon/></button>
       </div>
     </div>
