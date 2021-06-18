@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "prisma generate",
+    "dev": "PORT=3000 nodemon app.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^10.0.0",
+    "@prisma/client": "^2.24.1",
+    "koa": "^2.13.1",
+    "koa-body": "^4.2.0",
+    "koa-bodyparser": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^15.12.2",
+    "prisma": "^2.24.1",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
+  }
+}
